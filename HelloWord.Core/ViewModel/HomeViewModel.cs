@@ -32,7 +32,7 @@
         {
             get
             {
-                IMvxAsyncCommand navigationCommand = new MvxAsyncCommand(() => _mvxNavigationService.Navigate<TipCalcViewModel>());
+                IMvxAsyncCommand navigationCommand = new MvxAsyncCommand(() => _mvxNavigationService.Navigate<MenuViewModel>());
                 return navigationCommand;
             }
         }
