@@ -14,7 +14,7 @@ namespace HelloWorld.UI.Views
 {
     using MvvmCross.Droid.Views;
 
-    [Activity(Label = "HelloWorld", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity]
     public class HomeView : MvxActivity
     {
         protected override void OnViewModelSet()

@@ -14,6 +14,7 @@ namespace HelloWorld.UI.Views
 {
     using MvvmCross.Droid.Views;
 
+    [Activity]
     public class TipCalcView : MvxActivity
     {
         protected override void OnViewModelSet()
