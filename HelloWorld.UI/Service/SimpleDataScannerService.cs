@@ -7,11 +7,11 @@
     using HelloWord.Core.Services.DataScanning;
     using Environment = Android.OS.Environment;
 
-    public class SimpleDataScanner : IDataScanner
+    public class SimpleDataScannerService : IDataScanner
     {
         private List<string> _scanResult { get; set; }
 
-        public SimpleDataScanner()
+        public SimpleDataScannerService()
         {
             _scanResult = new List<string>();
         }
@@ -28,26 +28,38 @@
                 
                 throw;
             }
-
+            
             return _scanResult;
         }
 
-        public Task<List<string>> GetDataListAsync(string root = null)
+        public async Task<List<string>> GetDataListAsync(string root = null)
         {
-            throw new NotImplementedException();
+            var path = (root != null) ? root : Environment.RootDirectory.AbsolutePath;
+            try
+            {
+                await Task.Run(()=>TreeScan(path));
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+
+            return _scanResult;
         }
 
         private void TreeScan(string path)
         {
             foreach (var file in Directory.GetFiles(path))
             {
-
                 _scanResult.Add(file);
             }
-            foreach (string dir in Directory.GetDirectories(path))
-            {
-                TreeScan(dir);
-            }
+            //foreach (string dir in Directory.GetDirectories(path))
+            //{
+            //    TreeScan(dir);
+            //}
         }
+
+
     }
 }

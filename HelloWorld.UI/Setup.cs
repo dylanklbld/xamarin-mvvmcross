@@ -14,6 +14,7 @@ namespace HelloWorld.UI
 {
     using HelloWord.Core;
     using HelloWord.Core.Services.DataScanning;
+    using HelloWord.Core.Services.Output;
     using MvvmCross.Core.ViewModels;
     using MvvmCross.Droid.Platform;
     using MvvmCross.Platform;
@@ -29,8 +30,8 @@ namespace HelloWorld.UI
         protected override void InitializeFirstChance()
         {
             base.InitializeFirstChance();
-
-            Mvx.RegisterSingleton<IDataScanner>(() => new SimpleDataScanner());
+            Mvx.RegisterType<IDataScanner, SimpleDataScannerService>();
+            Mvx.RegisterType<IDataPresenter, SimpleDataPresenterService>();
         }
 
         protected override IMvxApplication CreateApp()
