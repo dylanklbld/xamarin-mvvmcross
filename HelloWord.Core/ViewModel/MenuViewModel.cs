@@ -22,7 +22,7 @@
         public IMvxInteraction<YesNoQuestion> Interaction
         {
             get
-            {
+            { 
                 return _interaction;
             }
         }
@@ -44,17 +44,16 @@
         }
         // demo
 
-        public class DataEventArgs : EventArgs
-        {
-            public List<string> DataList;
-        }
+        private string _someval;
 
-        public delegate void ScanDoneEvent(object sender, DataEventArgs args);
-        public event ScanDoneEvent ScanDone;
-
-        protected virtual void OnScanDone(List<string> dataList)
+        public string Someval
         {
-            ScanDone?.Invoke(this, new DataEventArgs { DataList = dataList });
+            get { return _someval; }
+            set
+            {
+                _someval = value;
+                RaisePropertyChanged(() => Someval);
+            }
         }
 
         public MenuViewModel(IDataScanner dataScanner)
@@ -72,6 +71,7 @@
             {
                 _filesCollection = value;
                 RaisePropertyChanged(() => FilesCollection);
+
             }
         }
 
@@ -79,7 +79,7 @@
         {
             var files = await _dataScanner.GetDataListAsync().ConfigureAwait(false);
             FilesCollection = new ObservableCollection<string>(files);
-            DoFinishProfileCommand();
+            Someval = files[0];
         }
 
     }

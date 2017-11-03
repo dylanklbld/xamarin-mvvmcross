@@ -26,7 +26,10 @@ namespace HelloWorld.UI.Views
             var set = this.CreateBindingSet<MenuView, MenuViewModel>();
             set.Bind(this).For(view => view.Interaction).To(viewModel => viewModel.Interaction).OneWay();
             set.Apply();
+
         }
+
+
         protected override void OnViewModelSet()
         {
             SetContentView(Resource.Layout.menu_view);
